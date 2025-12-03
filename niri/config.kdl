@@ -1,0 +1,264 @@
+include "/home/sara/.config/niri/colors/color-anchor.kdl"
+include "binds.kdl"
+
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+// Input  -----------------------------------------------------------------------------
+// https://yalter.github.io/niri/Configuration:-Input
+
+
+
+
+input {
+    keyboard {
+        xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+            // from org.freedesktop.locale1. You can control these using
+            // localectl set-x11-keymap.
+
+            layout "cz"
+            variant "qwerty"
+        }
+
+        numlock // Enable numlock on startup
+    }
+
+    mouse {
+        accel-speed 0.1
+        accel-profile "flat"
+        middle-emulation // left + right = middle click
+    }
+
+    // warp-mouse-to-focus // mouse warp to the center of newly focused windows.
+
+    focus-follows-mouse  max-scroll-amount="0%"
+
+    disable-power-key-handling // Power button will make PC shutdown insted of sleep mode
+}
+
+cursor {
+    // hide-when-typing
+    // Hide the cursor after one second of inactivity.
+    // hide-after-inactive-ms 1000
+}
+
+// Output -----------------------------------------------------------------------------
+// niri msg outputs.
+// https://yalter.github.io/niri/Configuration:-Outputs
+
+output "DP-1" {
+    mode "2560x1440@180.002" // Set resolution and refresh rate
+    position x=1920 y=0
+    //variable-refresh-rate
+    scale 1 // No scaling (use 2 for HiDPI)
+    focus-at-startup
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@74.973" // Set resolution and refresh rate
+    position x=0 y=300
+    //variable-refresh-rate
+    scale 1 // No scaling (use 2 for HiDPI)
+}
+
+// Layout  -----------------------------------------------------------------------------
+// https://yalter.github.io/niri/Configuration:-Layout
+
+layout {
+    gaps 14
+
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused column.
+    center-focused-column "never"
+
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        // Proportion sets the width as a fraction of the output width, taking gaps into account.
+        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        proportion 0.33333 	// 1/3
+        proportion 0.5 		// 1/2
+        proportion 0.66667  // 2/3
+        proportion 1.0
+
+    }
+
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+    preset-window-heights {
+		proportion 0.33333 	// 1/3
+	   	proportion 0.5 		// 1/2
+		proportion 0.66667  // 2/3
+		proportion 1.0
+     }
+
+    // You can change the default width of the new windows.
+    default-column-width { proportion 0.5; }
+
+    // You can change how the focus ring looks.
+    focus-ring {
+        width 4
+
+        // Colors can be set in a variety of ways:
+        // - CSS named colors: "red"
+        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
+        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+		// active-color "#00ac89"
+		// inactive-color "#505050"
+    }
+
+    // You can enable drop shadows for windows.
+    shadow {
+    	draw-behind-window true
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+}
+
+// Starup Apps  -----------------------------------------------------------------------------
+spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
+spawn-at-startup "waybar"
+spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
+spawn-sh-at-startup "wl-clip-persist --clipboard regular"
+spawn-sh-at-startup "/home/sara/.config/waybar/scripts/wlsunset.sh"
+spawn-sh-at-startup "wl-paste --watch cliphist store"
+spawn-at-startup "niri-switch-daemon"
+spawn-at-startup "niriswitcher"
+
+hotkey-overlay {
+    // skip-at-startup
+}
+
+prefer-no-csd // Disable program decorations
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// You can also set this to null to disable saving screenshots to disk.
+// screenshot-path null
+
+// Overview  -----------------------------------------------------------------------------
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#999999ff"
+        urgent-color "#ff9999ff"
+        padding 30
+        corner-radius 0
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+// Animation  -----------------------------------------------------------------------------
+// https://yalter.github.io/niri/Configuration:-Animations
+animations {
+	workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 100
+        curve "ease-out-quad"
+    }
+    window-close {
+        duration-ms 100
+        curve "ease-out-cubic"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 300
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+}
+
+// Windows Rules  -----------------------------------------------------------------------------
+// https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Example: enable rounded corners for all windows.
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+window-rule {
+    geometry-corner-radius 8 8 8 8
+}
+
+// Turn on shadows for floating windows.
+window-rule {
+    match is-floating=true
+
+    shadow {
+        on
+    }
+}
+
+window-rule {
+    match app-id="Flameshot$"
+    match app-id="pulseaudio"
+    match app-id="swayimg"
+
+    open-floating true
+}
+
+// Environment Variables -----------------------------------------------------------------------------
+
+    environment {
+        DISPLAY ":1"
+        ELECTRON_OZONE_PLATFORM_HINT "auto"
+        QT_QPA_PLATFORM "wayland"
+        // QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+        XDG_SESSION_TYPE "wayland"
+        XDG_CURRENT_DESKTOP "niri"
+        TERM "kitty"
+    }
+
+// Keybinds -----------------------------------------------------------------------------

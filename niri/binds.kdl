@@ -1,0 +1,236 @@
+
+binds {
+    // Apps
+    /// Terminal
+    MOD+T hotkey-overlay-title="Terminal: Kitty" { spawn-sh "kitty"; }
+    /// App launcher
+    Mod+Space hotkey-overlay-title="App Launcher: Fuzzel" { spawn-sh "fuzzel"; }
+    /// Clipboard History
+    MOD+V hotkey-overlay-title="Clip History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+    /// Browser shortcut
+    MOD+B hotkey-overlay-title="Browser: Firefox" { spawn-sh "firefox"; }
+    /// Task Manager
+    CTRL+SHIFT+ESCAPE hotkey-overlay-title="Task Manager: Resources" { spawn-sh "resources"; }
+    /// File Manager shortcut
+    MOD+E  hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
+    /// Brightness
+    CTRL+ALT+Prior { spawn-sh "ddcutil setvcp 10 + 10 --display 2"; }
+    CTRL+ALT+Next { spawn-sh "ddcutil setvcp 10 - 10 --display 2"; }
+    CTRL+ALT+SHIFT+Prior { spawn-sh "ddcutil setvcp 10 + 10 --display 1"; }
+    CTRL+ALT+SHIFT+Next { spawn-sh "ddcutil setvcp 10 - 10 --display 1"; }
+    /// Wlsunset toggle
+    SUPER+S { spawn-sh "/home/sara/.config/waybar/scripts/wlsunset.sh";}
+    SUPER+SHIFt+S { spawn-sh "/home/sara/.config/waybar/scripts/wlsunset_ultra.sh";}
+    /// Lock
+    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    /// Alt Tab
+    //Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    //Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+
+
+    // Basic
+    /// Overview
+    Mod+X repeat=false { toggle-overview; }
+    /// Close window
+    Mod+Q repeat=false { close-window; }
+    /// Quit Niri seassion
+    Ctrl+Alt+Delete { quit; }
+    /// Screenshot
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+    /// Help Keybinds
+    Mod+F1 { show-hotkey-overlay; }
+
+    /// wl-kadkakdksadfnfg
+    MOD+G { spawn-sh " wl-kbptr -o modes=floating,click -o mode_floating.source=detect"; }
+    MOD+SHIFT+G { spawn-sh "wl-kbptr -o modes=split,click"; }
+    /// pointer
+    //Mod+Shift+A { spawn-sh "wlrctl pointer click";}
+    //Mod+Shift+S { spawn-sh "wlrctl pointer click middle";}
+    //Mod+Shift+D { spawn-sh "wlrctl pointer click right";}
+	//Mod+W { spawn-sh "wlrctl pointer move 0 -10";}
+    //Mod+S { spawn-sh "wlrctl pointer move 0 10";}
+    //Mod+A { spawn-sh "wlrctl pointer move -10 0";}
+    //Mod+D { spawn-sh "wlrctl pointer move 10 0";}
+
+
+    // Window
+    /// Focus Window
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+    // Focus Window Wheelscroll
+    Mod+Wheelscrolldown cooldown-ms=25 { focus-column-right; }
+    Mod+Wheelscrollup cooldown-ms=25 { focus-column-left; }
+    /// Focus Window Home and End
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    /// Focus Window (WSAD keys)
+    Mod+A     { focus-column-left; }
+    Mod+S     { focus-window-down; }
+    Mod+W     { focus-window-up; }
+    Mod+D     { focus-column-right; }
+    /// Focus Window (VIM keys)
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    /// Move Window
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+    /// Move Window Wheelscroll
+    Mod+Shift+Wheelscrolldown { move-column-right; }
+    Mod+Shift+Wheelscrollup { move-column-left; }
+    /// Move Window Home and End
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+    /// Move Window (VIM keys)
+    Mod+Shift+A     { move-column-left; }
+    Mod+Shift+S     { move-window-down; }
+    Mod+Shift+W     { move-window-up; }
+    Mod+Shift+D     { move-column-right; }
+    /// Move Window (VIM keys)
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
+
+
+    // Change Widnow
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F { maximize-window-to-edges; }
+    Mod+Shift+F { maximize-column; }
+    Mod+Ctrl+F { fullscreen-window; }
+    // Expand the focused column to space not taken up by other fully visible columns.
+    // Makes the column "fill the rest of the space".
+    // Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+C { center-column; }
+    // Center all fully visible columns on screen.
+    Mod+Ctrl+C { center-visible-columns; }
+    /// Change Collumn Width
+    Mod+Equal { set-column-width "-10%"; }
+    Mod+Dead_acute  { set-column-width "+10%"; }
+    // Move the focused window between the floating and the tiling layout.
+    Mod+Z       { toggle-window-floating; }
+    Mod+Shift+Z { switch-focus-between-floating-and-tiling; }
+    Mod+Y { toggle-column-tabbed-display; }
+
+    /// Consume Window ?????????
+    // Consume one window from the right to the bottom of the focused column.
+    Mod+Comma  { consume-window-into-column; }
+    // Expel the bottom window from the focused column to the right.
+    Mod+Period { expel-window-from-column; }
+    //  If the window is alone, they will consume it into the nearby column to the side.
+    // If the window is already in a column, they will expel it out.
+    Mod+Shift+Comma  { consume-or-expel-window-left; } // .
+    Mod+Shift+Period { consume-or-expel-window-right; } // ,
+
+    // Workspace
+    /// Workspace Focus previous
+    Mod+Tab { focus-workspace-previous; }
+    /// Workspace Focus
+    Mod+Ctrl+Down cooldown-ms=150 { focus-workspace-down; }
+    Mod+Ctrl+Up cooldown-ms=150 { focus-workspace-up; }
+    /// Workspace Focus Wheelscroll
+    Mod+Ctrl+Wheelscrolldown cooldown-ms=150 { focus-workspace-down; }
+    Mod+Ctrl+Wheelscrollup cooldown-ms=150 { focus-workspace-up; }
+    /// Workspace Focus WSAD
+    Mod+Ctrl+S cooldown-ms=150 { focus-workspace-down; }
+    Mod+Ctrl+W cooldown-ms=150 { focus-workspace-up; }
+    /// Workspace Focus Czech
+    Mod+Plus { focus-workspace 1; }
+    Mod+Ecaron { focus-workspace 2; }
+    Mod+Scaron { focus-workspace 3; }
+    Mod+Ccaron { focus-workspace 4; }
+    Mod+Rcaron { focus-workspace 5; }
+    Mod+Zcaron { focus-workspace 6; }
+    Mod+Yacute { focus-workspace 7; }
+    Mod+Aacute { focus-workspace 8; }
+    Mod+Iacute { focus-workspace 9; }
+    /// Workspace Focus English
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    /// Workspace Move Window
+    Mod+Ctrl+Shift+Down cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Up cooldown-ms=150 { move-column-to-workspace-up; }
+    /// Workspace Move Window Wheelscroll
+    Mod+Ctrl+Shift+Wheelscrolldown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Wheelscrollup cooldown-ms=150 { move-column-to-workspace-up; }
+    /// Workspace Move Window WSAD
+    Mod+Ctrl+Shift+S cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+W cooldown-ms=150 { move-column-to-workspace-up; }
+    /// Workspace Move Window English
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    /// Workspace Move Window Czech
+    Mod+Ctrl+Plus { move-column-to-workspace 1; }
+    Mod+Ctrl+Ecaron { move-column-to-workspace 2; }
+    Mod+Ctrl+Scaron { move-column-to-workspace 3; }
+    Mod+Ctrl+Ccaron { move-column-to-workspace 4; }
+    Mod+Ctrl+Rcaron { move-column-to-workspace 5; }
+    Mod+Ctrl+Zcaron { move-column-to-workspace 6; }
+    Mod+Ctrl+Yacute { move-column-to-workspace 7; }
+    Mod+Ctrl+Aacute { move-column-to-workspace 8; }
+    Mod+Ctrl+Iacute { move-column-to-workspace 9; }
+
+    // Move Workspace
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+
+    // Audio Controlls
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
+
+    // Toggle tabbed column display mode.
+    // Windows in this column will appear as vertical tabs,
+    // rather than stacked on top of each other.
+
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+
+
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

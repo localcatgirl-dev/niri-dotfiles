@@ -1,0 +1,168 @@
+@import "/home/sara/.config/waybar/colors/anchors.css";
+
+* {
+    font-family: FontAwesome, Lexend, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 19px;
+}
+
+/* BURH WTF PROČ TO NĚKDO VYMYSLEL -_-, thanks goldmark00000 for the fix */
+/* https://github.com/Alexays/Waybar/issues/60#issuecomment-3558719927 */
+#workspaces button {
+    background: none;
+    border: none;
+    padding: 0;
+    text-shadow: none;
+    box-shadow: none;
+    transition: none;
+    -gtk-icon-shadow: none;
+    -gtk-icon-effect: none;
+    border-radius: 0px;
+}
+/* end */
+
+#workspaces button {
+    color: @text;
+    padding: 6 10px;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @text;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0;
+}
+#custom-nightscout {
+    min-width: 0;
+    box-shadow: none;
+    border: none;
+    -gtk-icon-transform: none;
+}
+
+/* Default */
+#backlight,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#tray,
+#power-profiles-daemon,
+#clock,
+#custom-weather,
+#custom-updates,
+#custom-nightscout,
+#custom-notification,
+#custom-sun {
+    /* background-color: #1e222a;
+    color: #c0c0c0;
+    font-size: 14px; */
+    border-radius: 0px;
+    padding: 4px 12px;
+}
+
+/* Default hover */
+#custom-nightscout:hover,
+#custom-exit:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#battery:hover,
+#custom-updates:hover,
+#custom-notification:hover,
+#clock:hover,
+#power-profiles-daemon:hover,
+#custom-weather:hover,
+#workspaces button:hover,
+#custom-sun:hover,
+#pulseaudio:hover {
+    /* background: #0d3531; */
+    /* background: #0d3531; */
+    background: @hover;
+    color: @text;
+    /* border-width: 0px; */
+}
+
+.niri-window-buttons > .flat.focused,
+.niri-window-buttons > .flat:hover,
+.niri-window-buttons > .flat.dragging,
+.niri-window-buttons > .flat.focussed.dragging {
+    color: @text;
+    border-bottom: 4px solid @act;
+}
+
+/* Nightscout >=4,3 */
+#custom-nightscout.range-low {
+    background-color: @purple;
+    color: @bg;
+}
+
+/* Nightscout 10.0 - 12.0 */
+#custom-nightscout.range-10_12 {
+    background-color: @yellow;
+    color: @bg;
+}
+
+/* Nightscout 13.0 - 15.9 */
+#custom-nightscout.range-13_159 {
+    background-color: @orange;
+    color: @bg;
+}
+
+/* Nightscout <=16 */
+#custom-nightscout.range-16plus,
+#power-profiles-daemon.performance {
+    background-color: @red;
+    color: @text;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: @green;
+    color: @text;
+}
+#workspaces button.active {
+    /* color: #0f1117; */
+    color: @bg;
+    /* background: #00ac89; */
+    background: @act;
+}
+
+/* Power/exit button */
+#custom-exit {
+    padding: 0px 10px;
+}
+
+/* Tooltips */
+tooltip {
+    border-radius: 12px;
+    background-color: #0f1117;
+    color: #c0c0c0;
+    padding: 4px 8px;
+}
+
+/* Taskbar */
+#taskbar {
+    /* background-color: #1e222a; */
+    margin: 0px;
+    border-radius: 0px;
+    font-weight: normal;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+.niri-window-buttons > .flat {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    text-shadow: none;
+    box-shadow: none;
+    transition: background 200ms;
+    -gtk-icon-shadow: none;
+    -gtk-icon-effect: none;
+    border-radius: 0px;
+    font-weight: normal;
+    border-bottom: 4px solid @bg;
+}

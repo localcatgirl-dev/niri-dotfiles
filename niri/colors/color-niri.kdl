@@ -1,0 +1,8 @@
+layout {
+    focus-ring {
+        active-color "#00ac89"
+        inactive-color "#505050"
+    }
+}
+
+spawn-sh-at-startup "swww img /home/sara/Pictures/walp/Skyscraper.png" // Set wallpaper

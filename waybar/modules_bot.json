@@ -1,0 +1,36 @@
+{
+  "cffi/niri_window_buttons": {
+    "module_path": "/usr/lib/waybar/libniri_window_buttons.so",
+    "show_all_outputs": false,
+    "only_current_workspace": true,
+    "show_window_titles": true,
+    "min_button_width": 50,
+    "max_button_width": 200,
+    "icon_size": 24,
+    "icon_spacing": 6,
+    "max_taskbar_width_per_output": {
+      "HDMI-A-1": 1920,
+      "DP-1": 2560
+    },
+    "context_menu": [
+      { "label": "  Fullscreen", "action": "fullscreen" },
+      { "label": "  Maximize Column", "action": "maximize-column" },
+      { "label": "  Maximize to Edges", "action": "maximize-edges" },
+      { "label": "󰉩  Toggle Floating", "action": "toggle-floating" },
+      { "label": "  Close Window", "action": "close" }
+    ],
+    "click_actions": {
+      "left_click_unfocused": "focus",
+      "left_click_focused": "none",
+      "double_click": "maximize-edges",
+      "right_click": "menu",
+      "middle_click": "close"
+    },
+    "ignore_app_ids": [],
+    "notifications": {
+      "enabled": true,
+      "use_desktop_entry": true,
+      "use_fuzzy_matching": false
+    }
+  }
+}

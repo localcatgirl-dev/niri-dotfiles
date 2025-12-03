@@ -1,0 +1,257 @@
+{
+  "cffi/niri_window_buttons": {
+    "module_path": "/usr/lib/waybar/libniri_window_buttons.so",
+    "show_all_outputs": false,
+    "only_current_workspace": true,
+    "show_window_titles": true,
+    "min_button_width": 10,
+    "max_button_width": 150,
+    "icon_size": 24,
+    "icon_spacing": 6,
+    "max_taskbar_width_per_output": {
+      "HDMI-A-1": 1312,
+      "DP-1": 1750
+    },
+    "context_menu": [
+      { "label": "  Fullscreen", "action": "fullscreen" },
+      { "label": "  Maximize Column", "action": "maximize-column" },
+      { "label": "  Maximize to Edges", "action": "maximize-edges" },
+      { "label": "󰉩  Toggle Floating", "action": "toggle-floating" },
+      { "label": "  Close Window", "action": "close" }
+    ],
+    "click_actions": {
+      "left_click_unfocused": "focus",
+      "left_click_focused": "none",
+      "double_click": "maximize-edges",
+      "right_click": "menu",
+      "middle_click": "close"
+    },
+    "ignore_app_ids": [],
+    "notifications": {
+      "enabled": true,
+      "use_desktop_entry": true,
+      "use_fuzzy_matching": false
+    }
+  },
+  "custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --location Stara_Boleslav --nerd --lang cs",
+    "return-type": "json"
+  },
+
+  "custom/sun": {
+    "format": "󱩌", // Text or icon to display (from Nerd Fonts)
+    "tooltip": "MEEEEEEEEOOOOOW",
+    "on-click": "/home/sara/.config/waybar/scripts/wlsunset.sh", // Command on left-click
+    "on-click-right": "/home/sara/.config/waybar/scripts/wlsunset_ultra.sh", // Optional
+    "interval": 0 // 0 = do not update periodically
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": " ",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+
+  // Workspaces
+  "niri/workspaces": {
+    "on-click": "activate"
+  },
+
+  // Taskbar
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    // "ignore-list": ["Alacritty", "kitty", "ghostty"],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Foot Server": "Terminal"
+    }
+  },
+
+  "custom/nightscout": {
+    "exec": "/home/sara/.config/waybar/scripts/nightscout.sh",
+    "interval": 60,
+    "return-type": "json",
+    "format": "{text}",
+    "on-click": "xdg-open https://p01--nightscout--7t74j57blk9q.code.run"
+  },
+
+  // niri Window
+  "niri/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.*) - Brave": "Brave",
+      "(.*) - Chromium": "Chromium",
+      "(.*) - Outlook": "$1",
+      "(.*) Microsoft Teams": "$1",
+      "(.*) Mozilla Firefox": "Firefox",
+      "(.*) - fish": "$1"
+    },
+    "separate-outputs": true
+  },
+
+  // Empty
+  "custom/empty": {
+    "format": ""
+  },
+
+  // Tools
+  "custom/tools": {
+    "format": "",
+    "tooltip-format": "Tools"
+  },
+
+  // Updates Count
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+      "has-updates": "󱍷",
+      "updated": "󰂪"
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+  },
+
+  // wofi Application Launcher
+  "custom/appmenu": {
+    "format": "   ",
+    "on-click": "sleep 0.2;wofi -show drun -replace",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+  },
+
+  // wofi Application Launcher
+  "custom/appmenuicon": {
+    "format": "",
+    "on-click": "sleep 0.2;wofi",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+  },
+
+  // Power Menu
+  "custom/exit": {
+    // "format": " 󰐥 ",
+    "format": "󰐥",
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "tooltip-format": "Power Menu"
+  },
+
+  // Keyboard State
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+
+  // System tray
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+
+  // Clock
+  "clock": {
+    "format": "{:%d-%m  %H:%M}",
+    "on-click": "xdg-open https://calendar.google.com",
+    "tooltip": false
+  },
+
+  "niri/language": {
+    "format": "/ K {short}"
+  },
+
+  // Battery
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [" ", " ", " ", " ", " "]
+  },
+
+  // Pulseaudio
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  // Bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "blueman-manager",
+    "format-no-controller": ""
+  },
+
+  // Other
+  "user": {
+    "format": "{user}",
+    "interval": 60,
+    "icon": false
+  },
+
+  // backlight:
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "scroll-step": 1
+  }
+}

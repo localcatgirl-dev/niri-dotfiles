@@ -1,0 +1,8 @@
+layout {
+    focus-ring {
+				active-color "#708090"
+				inactive-color "#505050"
+				}
+    }
+
+spawn-sh-at-startup "swww img /home/sara/Pictures/walp/small-blue-gray-Anchors-of-life.png" // Set wallpaper

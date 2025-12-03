@@ -1,0 +1,10 @@
+layout {
+    focus-ring {
+        active-gradient from="#33ccffee" to="#00ff99ee" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#33ccffee" to="#00ff99ee" angle=45 relative-to="workspace-view"
+
+    }
+
+}
+
+spawn-sh-at-startup "swww img /home/sara/Pictures/walp/Kath.png" // Set wallpaper
