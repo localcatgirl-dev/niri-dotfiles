@@ -12,20 +12,21 @@
       "HDMI-A-1": 1312,
       "DP-1": 1750
     },
-    "context_menu": [
-      { "label": "  Fullscreen", "action": "fullscreen" },
-      { "label": "  Maximize Column", "action": "maximize-column" },
-      { "label": "  Maximize to Edges", "action": "maximize-edges" },
-      { "label": "󰉩  Toggle Floating", "action": "toggle-floating" },
-      { "label": "  Close Window", "action": "close" }
-    ],
     "click_actions": {
-      "left_click_unfocused": "focus",
-      "left_click_focused": "none",
-      "double_click": "maximize-edges",
+      "left_click_unfocused": "focus-window",
+      "left_click_focused": "maximize-column",
+      "double_click": "maximize-window-to-edges",
       "right_click": "menu",
-      "middle_click": "close"
+      "middle_click": "close-window"
     },
+    "context_menu": [
+      { "label": "  Fullscreen", "action": "fullscreen-window" },
+      { "label": "  Center Column", "action": "center-column" },
+      { "label": "  Maximize Column", "action": "maximize-column" },
+      { "label": "  Maximize to Edges", "action": "maximize-window-to-edges" },
+      { "label": "󰉩  Toggle Floating", "action": "toggle-window-floating" },
+      { "label": "  Close Window", "action": "close-window" }
+    ],
     "ignore_app_ids": [],
     "notifications": {
       "enabled": true,
